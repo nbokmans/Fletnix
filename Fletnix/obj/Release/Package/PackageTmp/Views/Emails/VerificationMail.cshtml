@@ -1,0 +1,12 @@
+﻿@model Fletnix.Models.ViewModels.VerificationMail
+@{
+    Layout = null;
+}
+
+To: @Model.User.EmailAddress
+From: nietnix.han@gmail.com
+Subject: Complete Registration Process
+
+Hello @Model.User.Username,
+
+To complete the registration process click on this link @Model.VerificationUrl

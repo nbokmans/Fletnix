@@ -1,0 +1,21 @@
+﻿@model Fletnix.Models.ViewModels.WatchMovieViewModel
+@{
+    ViewBag.Title = "EditReview";
+}
+
+<h2>Edit review</h2>
+<hr />
+<div class="edit-review-content">
+    @Html.DisplayName("Your review:")
+    @using (Html.BeginForm("ChangeReview", "Movie", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.TextBox("newReview", Model.Review.Description ?? "onbekend")
+        @Html.DropDownList("rating")
+        @Html.Hidden("userID", Model.Review.UserID)
+        @Html.Hidden("titleID", Model.Review.TitleID)
+        <td>
+            <input type="submit" class="btn btn-xs btn-success" value="Save" />
+        </td>
+    }
+</div>

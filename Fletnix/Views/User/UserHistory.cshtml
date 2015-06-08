@@ -1,0 +1,31 @@
+﻿@model Fletnix.Models.ViewModels.UserProfileViewModel
+@{
+    ViewBag.Title = "User History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_UserPartial")
+<br />
+<h4>Movie history</h4>
+<table class="table">
+    <tr>
+        <th class="col-md-8">Name</th>
+        <th>Date</th>
+        <th>Price</th>
+    </tr>
+    
+@foreach(var movie in Model.UserPurchaseHistory)
+{
+    <tr>
+        <td>
+            @Html.ActionLink(@Html.DisplayFor(m => movie.Title.Title1).ToString(), "Watch", "Movie", new { ID = movie.TitleID}, null)
+        </td>
+        <td>
+            @Html.DisplayFor(m => movie.PurchaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(m => movie.Price)
+        </td>
+    </tr>
+}
+</table>

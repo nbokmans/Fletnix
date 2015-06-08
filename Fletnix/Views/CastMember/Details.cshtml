@@ -1,0 +1,67 @@
+﻿@model FletnixDatabase.Models.CastMember
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Actor information</h2>
+<div>
+    <hr />
+    <img src="http://i.imgur.com/74pJhQf.jpg" style="float: left; max-width: 10%; height: auto;" />
+    <div class="actorInformation" style="float: left;">
+        <h4>Information</h4>
+        <p>
+            <!-- Firstname + Lastname -->
+            <b>
+                @Html.DisplayName("Name: ")
+            </b>
+            @Html.DisplayFor(model => model.Firstname)
+            @Html.DisplayFor(model => model.Lastname)
+        </p>
+        <p>
+            <!-- Gender -->
+            <b>
+                @Html.DisplayName("Gender: ")
+            </b>
+            @if (Model.Gender == "f")
+            {
+                @Html.DisplayName("Female")
+            }
+            else
+            {
+                @Html.DisplayName("Male")
+            }
+        </p>
+        <p>
+            <b>
+                @Html.DisplayName("Date of birth: ")
+            </b>
+            @if (Model.DateOfBirth.HasValue)
+            {
+                @Html.DisplayFor(model => Model.DateOfBirth)
+            }
+            else
+            {
+                @Html.DisplayName("Unknown")
+            }
+        </p>
+    </div>
+</div>
+<br /><br /><br /><br /><br /><br /><br />
+
+<h2>Filmography</h2>
+<div>
+    <hr />
+    Appearances in tv-shows and guest roles are not displayed. <br />
+    @foreach (var cast in Model.Cast.Where(c => c.Title != null))
+    {
+        var b = cast.Title;
+        if (!b.Title1.StartsWith("(#"))
+        {
+            @Html.ActionLink(b.Title1, "Watch", "Movie", new { ID = b.TitleID }, null);
+    <br />
+        }
+
+    }
+
+</div>

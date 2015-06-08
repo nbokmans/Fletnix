@@ -1,0 +1,90 @@
+﻿@model Fletnix.Models.ViewModels.UserProfileViewModel
+@{
+    ViewBag.Title = "User Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_UserPartial")
+
+
+<div class="alert-success">@Html.Action(actionName: "_UserSuccess", controllerName: "User")</div>
+<br />
+@using (Html.BeginForm("UserProfile", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+   
+    <h4> Account information</h4>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NewPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.NewPassword, new { @class = "form-control", @type = "password"})
+            @Html.ValidationMessageFor(model => model.NewPassword)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CheckNewPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.CheckNewPassword, new { @class = "form-control", @type = "password"})
+            @Html.ValidationMessageFor(model => model.CheckNewPassword)
+        </div>
+    </div>
+    
+    <h4>Billing information</h4>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BankAccountNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.BankAccountNumber, Model.BankAccountNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.BankAccountNumber)
+        </div>
+    </div>
+    
+    <h4>Personal information</h4>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Firstname, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Firstname, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Firstname, String.Empty, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Lastname, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Lastname, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Lastname, String.Empty, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.emailadress, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.emailadress, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.emailadress, String.Empty, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Gender, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.RadioButtonFor(model => model.Gender, "m", true) Male
+            @Html.RadioButtonFor(model => model.Gender, "f", false) Female
+            @Html.ValidationMessageFor(model => model.Gender)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Save changes" />
+        </div>
+    </div>
+}
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

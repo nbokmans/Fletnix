@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FletnixModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cast">
+    <Key>
+      <PropertyRef Name="TitleID" />
+      <PropertyRef Name="CastMemberID" />
+      <PropertyRef Name="Role" />
+    </Key>
+    <Property Name="TitleID" Type="Int32" Nullable="false" />
+    <Property Name="CastMemberID" Type="Int32" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CastMember" Relationship="Self.FK_Cast_CastMember_CastMemberID" FromRole="Cast" ToRole="CastMember" />
+    <NavigationProperty Name="Role1" Relationship="Self.FK_Cast_Role_Role" FromRole="Cast" ToRole="Role" />
+    <NavigationProperty Name="Title" Relationship="Self.FK_Cast_Title_TitleID" FromRole="Cast" ToRole="Title" />
+  </EntityType>
+  <EntityType Name="CastMember">
+    <Key>
+      <PropertyRef Name="CastMemberID" />
+    </Key>
+    <Property Name="CastMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Firstname" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lastname" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Cast" Relationship="Self.FK_Cast_CastMember_CastMemberID" FromRole="CastMember" ToRole="Cast" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="CountryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CountryName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Country_CountryCode" FromRole="Country" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ErrorLog">
+    <Key>
+      <PropertyRef Name="ErrorLogID" />
+    </Key>
+    <Property Name="ErrorLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ErrorTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ErrorNumber" Type="Int32" Nullable="false" />
+    <Property Name="ErrorSeverity" Type="Int32" />
+    <Property Name="ErrorState" Type="Int32" />
+    <Property Name="ErrorProcedure" Type="String" MaxLength="126" FixedLength="false" Unicode="true" />
+    <Property Name="ErrorLine" Type="Int32" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="Genre1" />
+    </Key>
+    <Property Name="Genre1" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Movie" Relationship="Self.Movie_Genre" FromRole="Genre" ToRole="Movie" />
+    <NavigationProperty Name="Series" Relationship="Self.Series_Genre" FromRole="Genre" ToRole="Series" />
+  </EntityType>
+  <EntityType Name="Keyword">
+    <Key>
+      <PropertyRef Name="Keyword1" />
+    </Key>
+    <Property Name="Keyword1" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Title" Relationship="Self.Title_Keyword" FromRole="Keyword" ToRole="Title" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="TitleID" />
+    </Key>
+    <Property Name="TitleID" Type="Int32" Nullable="false" />
+    <Property Name="SequelOf_TitleID" Type="Int32" />
+    <NavigationProperty Name="Movie1" Relationship="Self.FK_Movie_Movie_SequelOf_TitleID" FromRole="Movie" ToRole="Movie1" />
+    <NavigationProperty Name="Movie2" Relationship="Self.FK_Movie_Movie_SequelOf_TitleID" FromRole="Movie1" ToRole="Movie" />
+    <NavigationProperty Name="Title" Relationship="Self.FK_Movie_Title_TitleID" FromRole="Movie" ToRole="Title" />
+    <NavigationProperty Name="Genre" Relationship="Self.Movie_Genre" FromRole="Movie" ToRole="Genre" />
+  </EntityType>
+  <EntityType Name="MovieDiscount">
+    <Key>
+      <PropertyRef Name="Percentage" />
+    </Key>
+    <Property Name="Percentage" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="LowerBound" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PurchaseHistory">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="TitleID" />
+      <PropertyRef Name="PurchaseDate" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="TitleID" Type="Int32" Nullable="false" />
+    <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Title" Relationship="Self.FK_PurchaseHistory_Title_TitleId" FromRole="PurchaseHistory" ToRole="Title" />
+    <NavigationProperty Name="User" Relationship="Self.FK_PurchaseHistory_User_UserID" FromRole="PurchaseHistory" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ReviewRating">
+    <Key>
+      <PropertyRef Name="TitleReview_TitleID" />
+      <PropertyRef Name="TitleReview_UserID" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="TitleReview_TitleID" Type="Int32" Nullable="false" />
+    <Property Name="TitleReview_UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Rating" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="TitleReview" Relationship="Self.FK_ReviewRating_TitleReview_TitleReview_TitleID_TitleReview_UserID" FromRole="ReviewRating" ToRole="TitleReview" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ReviewRating_User_UserID" FromRole="ReviewRating" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Role1" />
+    </Key>
+    <Property Name="Role1" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cast" Relationship="Self.FK_Cast_Role_Role" FromRole="Role" ToRole="Cast" />
+  </EntityType>
+  <EntityType Name="Season">
+    <Key>
+      <PropertyRef Name="SeriesID" />
+      <PropertyRef Name="SeasonNr" />
+    </Key>
+    <Property Name="SeriesID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonNr" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Series" Relationship="Self.FK_Season_Series_SeriesID" FromRole="Season" ToRole="Series" />
+    <NavigationProperty Name="TvEpisode" Relationship="Self.FK_TvEpisode_Season_SeriesId_SeasonNr" FromRole="Season" ToRole="TvEpisode" />
+  </EntityType>
+  <EntityType Name="Series">
+    <Key>
+      <PropertyRef Name="SeriesID" />
+    </Key>
+    <Property Name="SeriesID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartYear" Type="DateTime" Precision="0" />
+    <Property Name="EndYear" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Season" Relationship="Self.FK_Season_Series_SeriesID" FromRole="Series" ToRole="Season" />
+    <NavigationProperty Name="Genre" Relationship="Self.Series_Genre" FromRole="Series" ToRole="Genre" />
+  </EntityType>
+  <EntityType Name="Title">
+    <Key>
+      <PropertyRef Name="TitleID" />
+    </Key>
+    <Property Name="TitleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title1" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="IsWatchable" Type="Boolean" Nullable="false" />
+    <Property Name="Duration" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PublicationDate" Type="DateTime" Precision="0" />
+    <Property Name="DiscountPercentage" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="AverageRating" Type="Decimal" Precision="3" Scale="2" />
+    <Property Name="ImageLocation" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="VideoLocation" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cast" Relationship="Self.FK_Cast_Title_TitleID" FromRole="Title" ToRole="Cast" />
+    <NavigationProperty Name="Movie" Relationship="Self.FK_Movie_Title_TitleID" FromRole="Title" ToRole="Movie" />
+    <NavigationProperty Name="PurchaseHistory" Relationship="Self.FK_PurchaseHistory_Title_TitleId" FromRole="Title" ToRole="PurchaseHistory" />
+    <NavigationProperty Name="TitleReview" Relationship="Self.FK_TitleReview_Title_TitleID" FromRole="Title" ToRole="TitleReview" />
+    <NavigationProperty Name="TvEpisode" Relationship="Self.FK_TvEpisode_Title_TitleID" FromRole="Title" ToRole="TvEpisode" />
+    <NavigationProperty Name="WatchHistory" Relationship="Self.FK_WatchHistory_Title_TitleID" FromRole="Title" ToRole="WatchHistory" />
+    <NavigationProperty Name="Keyword" Relationship="Self.Title_Keyword" FromRole="Title" ToRole="Keyword" />
+  </EntityType>
+  <EntityType Name="TitleReview">
+    <Key>
+      <PropertyRef Name="TitleID" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="TitleID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Rating" Type="Byte" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ReviewRating" Relationship="Self.FK_ReviewRating_TitleReview_TitleReview_TitleID_TitleReview_UserID" FromRole="TitleReview" ToRole="ReviewRating" />
+    <NavigationProperty Name="Title" Relationship="Self.FK_TitleReview_Title_TitleID" FromRole="TitleReview" ToRole="Title" />
+    <NavigationProperty Name="User" Relationship="Self.FK_TitleReview_User_UserID" FromRole="TitleReview" ToRole="User" />
+  </EntityType>
+  <EntityType Name="TvEpisode">
+    <Key>
+      <PropertyRef Name="TitleID" />
+    </Key>
+    <Property Name="TitleID" Type="Int32" Nullable="false" />
+    <Property Name="SeriesID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonNr" Type="Int32" Nullable="false" />
+    <Property Name="EpisodeNr" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Season" Relationship="Self.FK_TvEpisode_Season_SeriesId_SeasonNr" FromRole="TvEpisode" ToRole="Season" />
+    <NavigationProperty Name="Title" Relationship="Self.FK_TvEpisode_Title_TitleID" FromRole="TvEpisode" ToRole="Title" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserType" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CountryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Firstname" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lastname" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BankAccountNumber" Type="String" MaxLength="34" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PasswordSalt" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+    <Property Name="VerificationToken" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DiscountPercentage" Type="Decimal" Precision="3" Scale="0" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_User_Country_CountryCode" FromRole="User" ToRole="Country" />
+    <NavigationProperty Name="PurchaseHistory" Relationship="Self.FK_PurchaseHistory_User_UserID" FromRole="User" ToRole="PurchaseHistory" />
+    <NavigationProperty Name="ReviewRating" Relationship="Self.FK_ReviewRating_User_UserID" FromRole="User" ToRole="ReviewRating" />
+    <NavigationProperty Name="TitleReview" Relationship="Self.FK_TitleReview_User_UserID" FromRole="User" ToRole="TitleReview" />
+    <NavigationProperty Name="UserType1" Relationship="Self.FK_User_UserType_UserType" FromRole="User" ToRole="UserType" />
+    <NavigationProperty Name="WatchHistory" Relationship="Self.FK_WatchHistory_User_UserID" FromRole="User" ToRole="WatchHistory" />
+  </EntityType>
+  <EntityType Name="UserDiscount">
+    <Key>
+      <PropertyRef Name="Percentage" />
+    </Key>
+    <Property Name="Percentage" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="LowerBound" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserType1" />
+    </Key>
+    <Property Name="UserType1" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_UserType_UserType" FromRole="UserType" ToRole="User" />
+  </EntityType>
+  <EntityType Name="WatchHistory">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="TitleID" />
+      <PropertyRef Name="WatchDate" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="TitleID" Type="Int32" Nullable="false" />
+    <Property Name="WatchDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Title" Relationship="Self.FK_WatchHistory_Title_TitleID" FromRole="WatchHistory" ToRole="Title" />
+    <NavigationProperty Name="User" Relationship="Self.FK_WatchHistory_User_UserID" FromRole="WatchHistory" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Cast_CastMember_CastMemberID">
+    <End Role="CastMember" Type="Self.CastMember" Multiplicity="1" />
+    <End Role="Cast" Type="Self.Cast" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CastMember">
+        <PropertyRef Name="CastMemberID" />
+      </Principal>
+      <Dependent Role="Cast">
+        <PropertyRef Name="CastMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cast_Role_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Cast" Type="Self.Cast" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Role1" />
+      </Principal>
+      <Dependent Role="Cast">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cast_Title_TitleID">
+    <End Role="Title" Type="Self.Title" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cast" Type="Self.Cast" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="TitleID" />
+      </Principal>
+      <Dependent Role="Cast">
+        <PropertyRef Name="TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Country_CountryCode">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryCode" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="CountryCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movie_Movie_SequelOf_TitleID">
+    <End Role="Movie" Type="Self.Movie" Multiplicity="0..1" />
+    <End Role="Movie1" Type="Self.Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie">
+        <PropertyRef Name="TitleID" />
+      </Principal>
+      <Dependent Role="Movie1">
+        <PropertyRef Name="SequelOf_TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movie_Title_TitleID">
+    <End Role="Title" Type="Self.Title" Multiplicity="1" />
+    <End Role="Movie" Type="Self.Movie" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="TitleID" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseHistory_Title_TitleId">
+    <End Role="Title" Type="Self.Title" Multiplicity="1" />
+    <End Role="PurchaseHistory" Type="Self.PurchaseHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="TitleID" />
+      </Principal>
+      <Dependent Role="PurchaseHistory">
+        <PropertyRef Name="TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseHistory_User_UserID">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PurchaseHistory" Type="Self.PurchaseHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="PurchaseHistory">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReviewRating_TitleReview_TitleReview_TitleID_TitleReview_UserID">
+    <End Role="TitleReview" Type="Self.TitleReview" Multiplicity="1" />
+    <End Role="ReviewRating" Type="Self.ReviewRating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TitleReview">
+        <PropertyRef Name="TitleID" />
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ReviewRating">
+        <PropertyRef Name="TitleReview_TitleID" />
+        <PropertyRef Name="TitleReview_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReviewRating_User_UserID">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ReviewRating" Type="Self.ReviewRating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ReviewRating">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Season_Series_SeriesID">
+    <End Role="Series" Type="Self.Series" Multiplicity="1" />
+    <End Role="Season" Type="Self.Season" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Series">
+        <PropertyRef Name="SeriesID" />
+      </Principal>
+      <Dependent Role="Season">
+        <PropertyRef Name="SeriesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TvEpisode_Season_SeriesId_SeasonNr">
+    <End Role="Season" Type="Self.Season" Multiplicity="1" />
+    <End Role="TvEpisode" Type="Self.TvEpisode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Season">
+        <PropertyRef Name="SeriesID" />
+        <PropertyRef Name="SeasonNr" />
+      </Principal>
+      <Dependent Role="TvEpisode">
+        <PropertyRef Name="SeriesID" />
+        <PropertyRef Name="SeasonNr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TitleReview_Title_TitleID">
+    <End Role="Title" Type="Self.Title" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TitleReview" Type="Self.TitleReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="TitleID" />
+      </Principal>
+      <Dependent Role="TitleReview">
+        <PropertyRef Name="TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TvEpisode_Title_TitleID">
+    <End Role="Title" Type="Self.Title" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TvEpisode" Type="Self.TvEpisode" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="TitleID" />
+      </Principal>
+      <Dependent Role="TvEpisode">
+        <PropertyRef Name="TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WatchHistory_Title_TitleID">
+    <End Role="Title" Type="Self.Title" Multiplicity="1" />
+    <End Role="WatchHistory" Type="Self.WatchHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="TitleID" />
+      </Principal>
+      <Dependent Role="WatchHistory">
+        <PropertyRef Name="TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TitleReview_User_UserID">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TitleReview" Type="Self.TitleReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="TitleReview">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserType_UserType">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserType1" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WatchHistory_User_UserID">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WatchHistory" Type="Self.WatchHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="WatchHistory">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Movie_Genre">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+    <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+  </Association>
+  <Association Name="Series_Genre">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+    <End Role="Series" Type="Self.Series" Multiplicity="*" />
+  </Association>
+  <Association Name="Title_Keyword">
+    <End Role="Keyword" Type="Self.Keyword" Multiplicity="*" />
+    <End Role="Title" Type="Self.Title" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cast" EntityType="Self.Cast" />
+    <EntitySet Name="CastMember" EntityType="Self.CastMember" />
+    <EntitySet Name="Country" EntityType="Self.Country" />
+    <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" />
+    <EntitySet Name="Genre" EntityType="Self.Genre" />
+    <EntitySet Name="Keyword" EntityType="Self.Keyword" />
+    <EntitySet Name="Movie" EntityType="Self.Movie" />
+    <EntitySet Name="MovieDiscount" EntityType="Self.MovieDiscount" />
+    <EntitySet Name="PurchaseHistory" EntityType="Self.PurchaseHistory" />
+    <EntitySet Name="ReviewRating" EntityType="Self.ReviewRating" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="Season" EntityType="Self.Season" />
+    <EntitySet Name="Series" EntityType="Self.Series" />
+    <EntitySet Name="Title" EntityType="Self.Title" />
+    <EntitySet Name="TitleReview" EntityType="Self.TitleReview" />
+    <EntitySet Name="TvEpisode" EntityType="Self.TvEpisode" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="UserDiscount" EntityType="Self.UserDiscount" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" />
+    <EntitySet Name="WatchHistory" EntityType="Self.WatchHistory" />
+    <AssociationSet Name="FK_Cast_CastMember_CastMemberID" Association="Self.FK_Cast_CastMember_CastMemberID">
+      <End Role="CastMember" EntitySet="CastMember" />
+      <End Role="Cast" EntitySet="Cast" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cast_Role_Role" Association="Self.FK_Cast_Role_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Cast" EntitySet="Cast" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cast_Title_TitleID" Association="Self.FK_Cast_Title_TitleID">
+      <End Role="Title" EntitySet="Title" />
+      <End Role="Cast" EntitySet="Cast" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Country_CountryCode" Association="Self.FK_User_Country_CountryCode">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movie_Movie_SequelOf_TitleID" Association="Self.FK_Movie_Movie_SequelOf_TitleID">
+      <End Role="Movie" EntitySet="Movie" />
+      <End Role="Movie1" EntitySet="Movie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movie_Title_TitleID" Association="Self.FK_Movie_Title_TitleID">
+      <End Role="Title" EntitySet="Title" />
+      <End Role="Movie" EntitySet="Movie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseHistory_Title_TitleId" Association="Self.FK_PurchaseHistory_Title_TitleId">
+      <End Role="Title" EntitySet="Title" />
+      <End Role="PurchaseHistory" EntitySet="PurchaseHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseHistory_User_UserID" Association="Self.FK_PurchaseHistory_User_UserID">
+      <End Role="User" EntitySet="User" />
+      <End Role="PurchaseHistory" EntitySet="PurchaseHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReviewRating_TitleReview_TitleReview_TitleID_TitleReview_UserID" Association="Self.FK_ReviewRating_TitleReview_TitleReview_TitleID_TitleReview_UserID">
+      <End Role="TitleReview" EntitySet="TitleReview" />
+      <End Role="ReviewRating" EntitySet="ReviewRating" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReviewRating_User_UserID" Association="Self.FK_ReviewRating_User_UserID">
+      <End Role="User" EntitySet="User" />
+      <End Role="ReviewRating" EntitySet="ReviewRating" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Season_Series_SeriesID" Association="Self.FK_Season_Series_SeriesID">
+      <End Role="Series" EntitySet="Series" />
+      <End Role="Season" EntitySet="Season" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TvEpisode_Season_SeriesId_SeasonNr" Association="Self.FK_TvEpisode_Season_SeriesId_SeasonNr">
+      <End Role="Season" EntitySet="Season" />
+      <End Role="TvEpisode" EntitySet="TvEpisode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TitleReview_Title_TitleID" Association="Self.FK_TitleReview_Title_TitleID">
+      <End Role="Title" EntitySet="Title" />
+      <End Role="TitleReview" EntitySet="TitleReview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TvEpisode_Title_TitleID" Association="Self.FK_TvEpisode_Title_TitleID">
+      <End Role="Title" EntitySet="Title" />
+      <End Role="TvEpisode" EntitySet="TvEpisode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WatchHistory_Title_TitleID" Association="Self.FK_WatchHistory_Title_TitleID">
+      <End Role="Title" EntitySet="Title" />
+      <End Role="WatchHistory" EntitySet="WatchHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TitleReview_User_UserID" Association="Self.FK_TitleReview_User_UserID">
+      <End Role="User" EntitySet="User" />
+      <End Role="TitleReview" EntitySet="TitleReview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserType_UserType" Association="Self.FK_User_UserType_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WatchHistory_User_UserID" Association="Self.FK_WatchHistory_User_UserID">
+      <End Role="User" EntitySet="User" />
+      <End Role="WatchHistory" EntitySet="WatchHistory" />
+    </AssociationSet>
+    <AssociationSet Name="Movie_Genre" Association="Self.Movie_Genre">
+      <End Role="Genre" EntitySet="Genre" />
+      <End Role="Movie" EntitySet="Movie" />
+    </AssociationSet>
+    <AssociationSet Name="Series_Genre" Association="Self.Series_Genre">
+      <End Role="Genre" EntitySet="Genre" />
+      <End Role="Series" EntitySet="Series" />
+    </AssociationSet>
+    <AssociationSet Name="Title_Keyword" Association="Self.Title_Keyword">
+      <End Role="Keyword" EntitySet="Keyword" />
+      <End Role="Title" EntitySet="Title" />
+    </AssociationSet>
+    <FunctionImport Name="uspBuyMovie">
+      <Parameter Name="TitleID" Mode="In" Type="Int32" />
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspLogError">
+      <Parameter Name="ErrorLogID" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="uspPrintError" />
+    <FunctionImport Name="uspWatchMovie">
+      <Parameter Name="TitleID" Mode="In" Type="Int32" />
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

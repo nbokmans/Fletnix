@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Libraries\Dev\Projects\FLETNIX\Publish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>03/12/2014 09:50:21</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/12/2014 09:50:22</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/12/2014 09:50:22</publishTime>
+    </File>
+    <File Include="bin/Fletnix.dll">
+      <publishTime>01/15/2015 14:30:30</publishTime>
+    </File>
+    <File Include="bin/FletnixDatabase.dll">
+      <publishTime>01/14/2015 16:25:38</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Auth.dll">
+      <publishTime>11/25/2014 13:59:07</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Auth.PlatformServices.dll">
+      <publishTime>11/25/2014 13:59:07</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Core.dll">
+      <publishTime>11/25/2014 13:59:08</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.PlatformServices.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.YouTube.v3.dll">
+      <publishTime>09/12/2014 13:12:34</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>09/12/2014 13:12:33</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Threading.Tasks.dll">
+      <publishTime>09/12/2014 13:12:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Threading.Tasks.Extensions.Desktop.dll">
+      <publishTime>09/12/2014 13:12:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Threading.Tasks.Extensions.dll">
+      <publishTime>09/12/2014 13:12:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>03/12/2014 09:50:53</publishTime>
+    </File>
+    <File Include="bin/MVC Foolproof Validation.dll">
+      <publishTime>12/15/2014 14:42:45</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/12/2014 09:50:54</publishTime>
+    </File>
+    <File Include="bin/Postal.dll">
+      <publishTime>05/12/2014 09:51:58</publishTime>
+    </File>
+    <File Include="bin/RazorEngine.dll">
+      <publishTime>05/12/2014 09:51:59</publishTime>
+    </File>
+    <File Include="bin/SimpleCrypto.dll">
+      <publishTime>03/12/2014 09:50:58</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Extensions.dll">
+      <publishTime>09/12/2014 13:12:33</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Primitives.dll">
+      <publishTime>09/12/2014 13:12:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>03/12/2014 09:50:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>03/12/2014 09:50:43</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>03/12/2014 09:50:45</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>03/12/2014 09:50:45</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>03/12/2014 09:50:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>03/12/2014 09:50:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>03/12/2014 09:50:52</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>03/12/2014 09:50:58</publishTime>
+    </File>
+    <File Include="bin/Zlib.Portable.dll">
+      <publishTime>09/12/2014 13:12:34</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Content/Images/Defaultimage.png">
+      <publishTime>01/14/2015 15:45:28</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/12yearslave.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/2012.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/AmericanSniper.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/BlackHawk.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/Edgeofmorrow.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/GOTG-poster.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/HarryPotter.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/Interstellar.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/LOR.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/Skyfall.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/Taken3.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Images/TitleImage/Wrong-Turn-3.jpg">
+      <publishTime>01/15/2015 13:35:57</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>01/15/2015 13:34:53</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>12/15/2014 14:32:40</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>05/12/2014 09:43:07</publishTime>
+    </File>
+    <File Include="Scripts/mvcfoolproof.unobtrusive.min.js">
+      <publishTime>12/15/2014 14:32:40</publishTime>
+    </File>
+    <File Include="Scripts/MvcFoolproofJQueryValidation.min.js">
+      <publishTime>12/15/2014 14:32:40</publishTime>
+    </File>
+    <File Include="Scripts/MvcFoolproofValidation.min.js">
+      <publishTime>12/15/2014 14:32:40</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>12/15/2014 14:32:40</publishTime>
+    </File>
+    <File Include="Views/CastMember/Details.cshtml">
+      <publishTime>01/05/2015 10:25:05</publishTime>
+    </File>
+    <File Include="Views/CastMember/Index.cshtml">
+      <publishTime>12/18/2014 09:49:12</publishTime>
+    </File>
+    <File Include="Views/ControlPanel/Administrators.cshtml">
+      <publishTime>01/09/2015 12:44:20</publishTime>
+    </File>
+    <File Include="Views/Emails/VerificationMail.cshtml">
+      <publishTime>01/14/2015 13:15:54</publishTime>
+    </File>
+    <File Include="Views/Emails/_ViewStart.cshtml">
+      <publishTime>04/12/2014 16:11:47</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>12/18/2014 09:49:12</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>01/15/2015 13:45:15</publishTime>
+    </File>
+    <File Include="Views/ManageMovies/Create.cshtml">
+      <publishTime>12/19/2014 09:49:51</publishTime>
+    </File>
+    <File Include="Views/ManageMovies/Delete.cshtml">
+      <publishTime>12/19/2014 09:49:51</publishTime>
+    </File>
+    <File Include="Views/ManageMovies/Details.cshtml">
+      <publishTime>12/19/2014 09:49:51</publishTime>
+    </File>
+    <File Include="Views/ManageMovies/Edit.cshtml">
+      <publishTime>12/19/2014 09:49:51</publishTime>
+    </File>
+    <File Include="Views/ManageMovies/Index.cshtml">
+      <publishTime>12/19/2014 09:49:51</publishTime>
+    </File>
+    <File Include="Views/Movie/Create.cshtml">
+      <publishTime>12/03/2014 09:58:23</publishTime>
+    </File>
+    <File Include="Views/Movie/Delete.cshtml">
+      <publishTime>12/03/2014 09:58:23</publishTime>
+    </File>
+    <File Include="Views/Movie/Details.cshtml">
+      <publishTime>12/03/2014 09:58:24</publishTime>
+    </File>
+    <File Include="Views/Movie/Edit.cshtml">
+      <publishTime>01/15/2015 13:16:11</publishTime>
+    </File>
+    <File Include="Views/Movie/EditReview.cshtml">
+      <publishTime>12/19/2014 13:59:43</publishTime>
+    </File>
+    <File Include="Views/Movie/Index.cshtml">
+      <publishTime>01/15/2015 11:06:46</publishTime>
+    </File>
+    <File Include="Views/Movie/Watch.cshtml">
+      <publishTime>01/15/2015 14:18:45</publishTime>
+    </File>
+    <File Include="Views/Movie/WatchMovie.cshtml">
+      <publishTime>12/10/2014 12:34:57</publishTime>
+    </File>
+    <File Include="Views/Movie/_SearchResults.cshtml">
+      <publishTime>01/14/2015 15:45:28</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>01/14/2015 13:15:55</publishTime>
+    </File>
+    <File Include="Views/Shared/_GenericError.cshtml">
+      <publishTime>12/19/2014 14:37:18</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>01/15/2015 12:22:52</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginPartial.cshtml">
+      <publishTime>12/17/2014 15:14:58</publishTime>
+    </File>
+    <File Include="Views/User/Login.cshtml">
+      <publishTime>11/12/2014 14:00:50</publishTime>
+    </File>
+    <File Include="Views/User/LogOff.cshtml">
+      <publishTime>01/06/2015 13:18:30</publishTime>
+    </File>
+    <File Include="Views/User/Register.cshtml">
+      <publishTime>01/08/2015 11:42:11</publishTime>
+    </File>
+    <File Include="Views/User/RegisterStepTwo.cshtml">
+      <publishTime>04/12/2014 16:11:47</publishTime>
+    </File>
+    <File Include="Views/User/UserHistory.cshtml">
+      <publishTime>01/05/2015 10:25:05</publishTime>
+    </File>
+    <File Include="Views/User/UserProfile.cshtml">
+      <publishTime>01/15/2015 11:00:17</publishTime>
+    </File>
+    <File Include="Views/User/Verify.cshtml">
+      <publishTime>05/12/2014 09:43:07</publishTime>
+    </File>
+    <File Include="Views/User/_UserPartial.cshtml">
+      <publishTime>12/19/2014 14:37:18</publishTime>
+    </File>
+    <File Include="Views/User/_UserSuccess.cshtml">
+      <publishTime>12/19/2014 14:37:18</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>10/12/2014 14:25:22</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>03/12/2014 09:46:50</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>10/12/2014 14:37:22</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

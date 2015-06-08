@@ -1,0 +1,39 @@
+﻿@model Fletnix.Models.ViewModels.HomeViewModel
+@using FletnixDatabase.Models;
+@{
+    ViewBag.Title = "Fletnix";
+    var imagePath = "";
+    var db = new Entities();
+}
+
+
+<div class="row">
+    <h2>Movies</h2>
+    <p>
+        @foreach (var movie in Model.Movies)
+        {
+            <a class="imageMovie" href="~/Movie/Watch/@movie.TitleID" style="text-decoration: none;">
+            <div class="movie-preview-display" style="text-decoration: none; float:left; text-align: center; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border: 2px solid; margin:5px;">
+                @{
+                    if (movie.Title.ImageLocation.IsEmpty())
+                    {
+                        imagePath = @"/Content/Images/Defaultimage.png";
+                    }
+                    else
+                    {
+                        imagePath = movie.Title.ImageLocation;
+                    }
+                }
+                <div style="float:left; width:100%; background-color:#696969; border-radius: 5px 5px 0px 0px; -moz-border-radius: 5px 5px 0px 0px; -webkit-border-radius: 5px 5px 0px 0px; border: 1px solid;">
+                    <img src="@imagePath" style="max-width: 125px; max-height: 150px; padding-bottom: 3px;" />
+                </div>
+                <br />
+                <div class="movie-preview-display-text" style="min-width: 200px; max-width: 200px; min-height:180px;">
+                    <b>@Html.DisplayFor(modelItem => movie.Title.Title1)</b>
+                </div>
+                @Html.DisplayFor(modelItem => movie.Title.AverageRating)  / 10
+            </div>
+            </a>
+        }
+    </p>
+</div>

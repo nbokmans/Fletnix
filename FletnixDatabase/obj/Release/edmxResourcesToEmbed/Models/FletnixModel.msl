@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FletnixModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Cast">
+      <EntityTypeMapping TypeName="FletnixModel.Cast">
+        <MappingFragment StoreEntitySet="Cast">
+          <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+          <ScalarProperty Name="CastMemberID" ColumnName="CastMemberID" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CastMember">
+      <EntityTypeMapping TypeName="FletnixModel.CastMember">
+        <MappingFragment StoreEntitySet="CastMember">
+          <ScalarProperty Name="CastMemberID" ColumnName="CastMemberID" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Country">
+      <EntityTypeMapping TypeName="FletnixModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorLog">
+      <EntityTypeMapping TypeName="FletnixModel.ErrorLog">
+        <MappingFragment StoreEntitySet="ErrorLog">
+          <ScalarProperty Name="ErrorLogID" ColumnName="ErrorLogID" />
+          <ScalarProperty Name="ErrorTime" ColumnName="ErrorTime" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+          <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+          <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+          <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+          <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genre">
+      <EntityTypeMapping TypeName="FletnixModel.Genre">
+        <MappingFragment StoreEntitySet="Genre">
+          <ScalarProperty Name="Genre1" ColumnName="Genre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Keyword">
+      <EntityTypeMapping TypeName="FletnixModel.Keyword">
+        <MappingFragment StoreEntitySet="Keyword">
+          <ScalarProperty Name="Keyword1" ColumnName="Keyword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movie">
+      <EntityTypeMapping TypeName="FletnixModel.Movie">
+        <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+          <ScalarProperty Name="SequelOf_TitleID" ColumnName="SequelOf_TitleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MovieDiscount">
+      <EntityTypeMapping TypeName="FletnixModel.MovieDiscount">
+        <MappingFragment StoreEntitySet="MovieDiscount">
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="LowerBound" ColumnName="LowerBound" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseHistory">
+      <EntityTypeMapping TypeName="FletnixModel.PurchaseHistory">
+        <MappingFragment StoreEntitySet="PurchaseHistory">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReviewRating">
+      <EntityTypeMapping TypeName="FletnixModel.ReviewRating">
+        <MappingFragment StoreEntitySet="ReviewRating">
+          <ScalarProperty Name="TitleReview_TitleID" ColumnName="TitleReview_TitleID" />
+          <ScalarProperty Name="TitleReview_UserID" ColumnName="TitleReview_UserID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="FletnixModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Role1" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Season">
+      <EntityTypeMapping TypeName="FletnixModel.Season">
+        <MappingFragment StoreEntitySet="Season">
+          <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
+          <ScalarProperty Name="SeasonNr" ColumnName="SeasonNr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Series">
+      <EntityTypeMapping TypeName="FletnixModel.Series">
+        <MappingFragment StoreEntitySet="Series">
+          <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+          <ScalarProperty Name="EndYear" ColumnName="EndYear" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Title">
+      <EntityTypeMapping TypeName="FletnixModel.Title">
+        <MappingFragment StoreEntitySet="Title">
+          <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+          <ScalarProperty Name="Title1" ColumnName="Title" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IsWatchable" ColumnName="IsWatchable" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PublicationDate" ColumnName="PublicationDate" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+          <ScalarProperty Name="ImageLocation" ColumnName="ImageLocation" />
+          <ScalarProperty Name="VideoLocation" ColumnName="VideoLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TitleReview">
+      <EntityTypeMapping TypeName="FletnixModel.TitleReview">
+        <MappingFragment StoreEntitySet="TitleReview">
+          <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TvEpisode">
+      <EntityTypeMapping TypeName="FletnixModel.TvEpisode">
+        <MappingFragment StoreEntitySet="TvEpisode">
+          <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+          <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
+          <ScalarProperty Name="SeasonNr" ColumnName="SeasonNr" />
+          <ScalarProperty Name="EpisodeNr" ColumnName="EpisodeNr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="FletnixModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+          <ScalarProperty Name="VerificationToken" ColumnName="VerificationToken" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDiscount">
+      <EntityTypeMapping TypeName="FletnixModel.UserDiscount">
+        <MappingFragment StoreEntitySet="UserDiscount">
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="LowerBound" ColumnName="LowerBound" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserType">
+      <EntityTypeMapping TypeName="FletnixModel.UserType">
+        <MappingFragment StoreEntitySet="UserType">
+          <ScalarProperty Name="UserType1" ColumnName="UserType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WatchHistory">
+      <EntityTypeMapping TypeName="FletnixModel.WatchHistory">
+        <MappingFragment StoreEntitySet="WatchHistory">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+          <ScalarProperty Name="WatchDate" ColumnName="WatchDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Movie_Genre" TypeName="FletnixModel.Movie_Genre" StoreEntitySet="Movie_Genre">
+      <EndProperty Name="Genre">
+        <ScalarProperty Name="Genre1" ColumnName="Genre" />
+      </EndProperty>
+      <EndProperty Name="Movie">
+        <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Series_Genre" TypeName="FletnixModel.Series_Genre" StoreEntitySet="Series_Genre">
+      <EndProperty Name="Genre">
+        <ScalarProperty Name="Genre1" ColumnName="Genre" />
+      </EndProperty>
+      <EndProperty Name="Series">
+        <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Title_Keyword" TypeName="FletnixModel.Title_Keyword" StoreEntitySet="Title_Keyword">
+      <EndProperty Name="Keyword">
+        <ScalarProperty Name="Keyword1" ColumnName="Keyword" />
+      </EndProperty>
+      <EndProperty Name="Title">
+        <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="uspBuyMovie" FunctionName="FletnixModel.Store.uspBuyMovie" />
+    <FunctionImportMapping FunctionImportName="uspLogError" FunctionName="FletnixModel.Store.uspLogError" />
+    <FunctionImportMapping FunctionImportName="uspPrintError" FunctionName="FletnixModel.Store.uspPrintError" />
+    <FunctionImportMapping FunctionImportName="uspWatchMovie" FunctionName="FletnixModel.Store.uspWatchMovie" />
+  </EntityContainerMapping>
+</Mapping>

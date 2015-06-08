@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9c6c7120974147e99034b9ea6d8bfafd" Name="Diagram1">
+        <EntityTypeShape EntityType="FletnixModel.Cast" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.CastMember" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.Country" Width="1.5" PointX="3.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.ErrorLog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.Genre" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.Keyword" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.Movie" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.MovieDiscount" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.PurchaseHistory" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.ReviewRating" Width="1.5" PointX="10.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.Role" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.Season" Width="1.5" PointX="6" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.Series" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.Title" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.TitleReview" Width="1.5" PointX="8.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.TvEpisode" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.User" Width="1.5" PointX="6" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.UserDiscount" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.UserType" Width="1.5" PointX="3.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FletnixModel.WatchHistory" Width="1.5" PointX="8.25" PointY="12.125" IsExpanded="true" />
+        <AssociationConnector Association="FletnixModel.FK_Cast_CastMember_CastMemberID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_Cast_Role_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_Cast_Title_TitleID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_User_Country_CountryCode" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_Movie_Movie_SequelOf_TitleID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_Movie_Title_TitleID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_PurchaseHistory_Title_TitleId" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_PurchaseHistory_User_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_ReviewRating_TitleReview_TitleReview_TitleID_TitleReview_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_ReviewRating_User_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_Season_Series_SeriesID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_TvEpisode_Season_SeriesId_SeasonNr" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_TitleReview_Title_TitleID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_TvEpisode_Title_TitleID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_WatchHistory_Title_TitleID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_TitleReview_User_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_User_UserType_UserType" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.FK_WatchHistory_User_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.Movie_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.Series_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="FletnixModel.Title_Keyword" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

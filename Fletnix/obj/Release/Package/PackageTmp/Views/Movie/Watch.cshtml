@@ -1,0 +1,347 @@
+﻿@using System.Linq;
+@using FletnixDatabase.Models
+@model Fletnix.Models.ViewModels.WatchMovieViewModel
+
+@{
+    ViewBag.Title = "Watch";
+    if (Request.IsAuthenticated)
+    {
+        var username = User.Identity.Name;
+        Model.userID = Model.Users.First(user => user.Username.Equals(username)).UserID;
+    }
+    
+    if (Model.Title.PublicationDate.HasValue)
+    {
+        Model.date = Model.Title.PublicationDate.Value.ToShortDateString();
+    }
+    else
+    {
+        Model.date = "";
+    }
+ }
+
+<h2>Watch</h2>
+@if (@Model.Title.VideoLocation != null) //Youtube video found
+{
+    if (Request.IsAuthenticated)
+    { //User is logged in
+        if ((Model.PurchaseHistories.Count(ph => ph.UserID.Equals(Model.userID) &&
+                                                 ph.TitleID.Equals(Model.Title.TitleID) &&
+                                                 ph.PurchaseDate >= Model.dateMinusOneDay) != 0))
+        {
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" width="560" height="315" src="@Model.Title.VideoLocation"></iframe>
+            </div>
+        }
+        else
+        {
+            <div style="width: 560px; height: 315px; background-color: #000000; Color: #ffffff; text-align: center; line-height: 315px ">
+                You must purchase this movie before you can watch it.
+            </div>
+            <br />
+        }
+    }
+    else //User is not logged in
+    {
+        <div style="width: 560px; height: 315px; background-color: #000000; Color: #ffffff; text-align: center; line-height: 315px ">
+            You must be logged in to watch this movie.
+        </div>
+        <br />
+    }
+}
+else //Youtube not video found
+{
+    <div style="width: 560px; height: 315px; background-color: #000000; Color: #ffffff; text-align: center; line-height: 315px ">
+        There is no movie available.
+    </div>
+    <br />
+}
+
+
+@if (Request.IsAuthenticated){
+    if ((!Model.PurchaseHistories.Any(ph => ph.UserID.Equals(Model.userID) && ph.TitleID.Equals(Model.Title.TitleID) && 
+        (ph.PurchaseDate >= Model.dateMinusOneDay))) ||
+        (!Model.PurchaseHistories.Any(ph => ph.UserID.Equals(Model.userID) && ph.TitleID.Equals(Model.Title.TitleID))))
+    {        
+        using (Html.BeginForm("BuyMovie", "Movie", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("titleID", Model.Title.TitleID)
+                <input type="submit" class="btn btn-xl btn-danger" style="width:560px;" value="Buy" />
+        }
+    }
+}
+
+
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="text-align:left;">
+            @Html.DisplayNameFor(model => model.Title.Title1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title.Title1)
+        </dd>
+
+        <dt style="text-align:left;">
+            @Html.DisplayNameFor(model => model.Title.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title.Duration)
+        </dd>
+
+        <dt style="text-align:left;">
+            @Html.DisplayNameFor(model => model.Title.PublicationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+        
+         @{
+             if (Model.Title.Movie != null)
+             {
+                 var movie2 = Model.Title.Movie.Movie2;
+                 if (movie2 != null)
+                 {
+                     var sequelTitle = movie2.Title.Title1;
+                     var sequelId = @movie2.TitleID;
+                 
+                    <dt style="text-align:left;">
+                        @Html.DisplayNameFor(model => model.Title.Movie.SequelOf_TitleID)
+                    </dt>
+                     <dd>
+                         @Html.ActionLink(sequelTitle, "Watch", "Movie", new { id = sequelId }, null)
+                     </dd>
+                     }
+                 }
+             if (Model.Title.TvEpisode != null)
+             {
+                <dt style="text-align:left;">
+                    @Html.DisplayNameFor(model => model.Title.TvEpisode.Season.Series.Name)
+                </dt>
+                 <dd>
+                     @Html.DisplayFor(model => model.Title.TvEpisode.Season.Series.Name)
+                 </dd>
+             
+                <dt style="text-align:left;">
+                    @Html.DisplayNameFor(model => model.Title.TvEpisode.Season.SeasonNr)
+                </dt>
+                 <dd>
+                     @Html.DisplayFor(model => model.Title.TvEpisode.Season.SeasonNr)
+                 </dd>
+             
+                <dt style="text-align:left;">
+                    @Html.DisplayNameFor(model => model.Title.TvEpisode.EpisodeNr)
+                </dt>
+                 <dd>
+                     @Html.DisplayFor(model => model.Title.TvEpisode.EpisodeNr)
+                 </dd>
+             
+             
+             }
+}
+            
+  
+
+        <dt style="text-align:left;">
+            @Html.DisplayNameFor(model => model.Title.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title.Price)
+        </dd>
+        <dt style="text-align:left;">
+            @Html.DisplayNameFor(model => model.movieDiscountPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieDiscountPrice)
+        </dd>
+        <dt style="text-align:left;">
+           Rating
+        </dt>
+
+        <dd>
+            @if (Model.Title.AverageRating != null)
+            {
+                @Html.DisplayFor(model => model.Title.AverageRating)@:/10
+            }
+            else
+            {
+                @: This movie is not yet rated.
+            }
+        </dd>
+
+        <dt style="text-align:left;">
+            @Html.DisplayNameFor(model => model.Title.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title.Description)
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div>
+    <h4>Cast</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+       @foreach (var castmember in Model.Title.Cast)
+       {
+           var upperRole = char.ToUpper(castmember.Role[0]) + castmember.Role.Substring(1);
+           @Html.ActionLink(upperRole + ": " + castmember.CastMember.Firstname + " " + castmember.CastMember.Lastname, 
+                "Details", "CastMember", new { id = castmember.CastMemberID}, null)
+            
+           
+        <br />
+       }
+       
+</div>
+
+<br /><br />
+
+@if (Model.Title.TitleReview != null)
+{
+    <h4>Reviews</h4>
+    <div class="form-horizontal">
+        <table class="table">
+            <tr>
+                <th class="col-md-10">
+                    Description
+                </th>
+                <th>
+                    Movie rating
+                </th>
+                <th>
+                    Average
+                </th>
+            </tr>
+
+            @foreach (var review in Model.Title.TitleReview)
+            {
+                <tr>
+                    <td class="col-md-10" style="overflow-wrap:break-word;">
+                        @Html.DisplayFor(modelItem => review.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => review.Rating)
+                    </td>
+                    <td>
+                        @if (review.AverageRating != 0) { 
+                            @Html.DisplayFor(model => review.AverageRating).ToString()@:/5
+                        }else{
+                            @:-
+                        }
+                                                                                  
+                    </td>
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (Model.Users.First(user => user.Username.Equals(User.Identity.Name)).UserID == review.UserID && 
+                            review.AverageRating == 0)
+                        {
+                            using (Html.BeginForm("EditReview", "Movie", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                <td>
+                                    @Html.Hidden("titleID", Model.Title.TitleID)
+                                    @Html.Hidden("userID", review.UserID)
+                                    <input type="submit" class="btn btn-xs btn-warning" value="Edit" />
+                                </td>
+                            }
+                            using (Html.BeginForm("DeleteReview", "Movie", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <td>
+                                     @Html.Hidden("titleID", Model.Title.TitleID)
+                                     @Html.Hidden("userID", review.UserID)
+                                     <input type="submit" class="btn btn-xs btn-danger" value="Delete" />
+                                </td>
+                            }
+                        }
+                        else if ((string) Session["UserType"] == "Administrator")
+                        {
+
+                            using (Html.BeginForm("DeleteReview", "Movie", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <td>
+                                    @Html.Hidden("titleID", Model.Title.TitleID)
+                                    @Html.Hidden("userID", review.UserID)
+                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete" />
+                                </td>
+                            }
+                        }
+                    }
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (review.User.Username == User.Identity.Name)
+                        {
+                            Model.wroteReview = true;
+                        }
+                        else
+                        {
+                            if (review.ReviewRating.All(r => r.User.Username != User.Identity.Name))
+                            {
+                                using (Html.BeginForm("RateReview", "Movie", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("titleID", Model.Title.TitleID)
+                                    @Html.Hidden("userID", review.UserID)
+                                    <td>
+                                        @Html.DropDownList("rating", Model.ReviewRatings, new { htmlAttributes = new { @class = "dropdown-toggle" } })
+                                    </td>
+                                    <td>
+                                        <input type="submit" name="RateReview" class="btn btn-xs btn-danger" value="Rate" />
+                                    </td>
+                                }
+                            }
+                        }
+                    }
+                </tr>
+                }
+        </table>
+        </div>
+  }    
+
+
+
+@if (!Model.wroteReview && Request.IsAuthenticated)
+{
+        using (Html.BeginForm("Watch", "Movie", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+           {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Write review</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.Rating, Model.Ratings, new { htmlAttributes = new { @class = "dropdown-toggle" } })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+    }
+}

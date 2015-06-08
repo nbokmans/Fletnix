@@ -1,0 +1,131 @@
+﻿@using System.Globalization
+@using System.Runtime.InteropServices
+@using Fletnix.Models.ViewModels
+@using FletnixDatabase.Models
+@using Microsoft.Ajax.Utilities
+@model SearchMovieViewModel
+
+@{
+    ViewBag.Title = "Search movie";
+    var tempMovie = new Movie();
+    var tempSearchParams = new SearchParams();
+}
+
+
+<h2>Search movie</h2>
+
+@using (Html.BeginForm("Index", "Movie", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="row">
+        <!--Title-->
+        <div class=" col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(model => tempMovie.Title, new { @class = "col-md-2 control-label" })
+                @Html.TextBox("Title", Model.SearchParams.Title ?? "", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <!--Cast-->
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(model => tempMovie.Title.Cast, new { @class = "col-md-2 control-label" })
+                @Html.TextBox("FirstName", Model.SearchParams.FirstName, new{@class = "form-control"})
+            </div>
+        </div>
+
+        <!--Genre-->
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(model => tempMovie.Genre, new { @class = "col-md-2 control-label" })
+                @Html.DropDownList("Genre", Model.Genres, Model.SearchParams.Genre, new { @class = "btn btn-default dropdown-toggle btn-group-justified" })
+            </div>
+        </div>
+
+        <!--Keyword-->
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(model => tempMovie.Title.Keyword, new { @class = "col-md-2 control-label" })
+                @Html.TextBox("Keyword", Model.SearchParams.Keyword, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <!--FromYear-->
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(model => tempSearchParams.FromYear, new { @class = "col-md-2 control-label" })
+                @Html.TextBox("FromYear", Model.SearchParams.FromYear, new{@class = "form-control"})
+                @Html.ValidationMessageFor(model => tempSearchParams.FromYear, String.Empty, new{@class = "text-danger"})
+            </div>
+        </div>
+        <!-- ToYear -->
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(model => tempSearchParams.ToYear, new { @class = "col-md-2 control-label" })
+                @Html.TextBox("ToYear", Model.SearchParams.ToYear, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => tempSearchParams.ToYear, String.Empty, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(model =>tempSearchParams.OrderBy, new{@class = "col-md-2 control-label"           })
+                @Html.DropDownList("OrderBy",
+                                Enum.GetNames(typeof(SearchMovieViewModel.OrderOption)).Select(e => new SelectListItem { Text = e }),
+                                 new { @class = "btn btn-default dropdown-toggle btn-group-sm" })
+                @Html.DropDownList("Ordering",
+                                new List<string> { "Ascending", "Descending" }.Select(i => new SelectListItem { Text = i }),
+                                new { @class = "btn btn-default dropdown-toggle btn-group-sm" })
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group">
+                <span class="col-md-2 control-label"></span>
+                <input type="submit" class="btn btn-success" value="Search" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@Html.Partial("_SearchResults", Model.Movies)
+
+<p>@Model.NumResults titles were found.</p>
+<h5>Go to page: </h5>
+@for (var i = 0; (i < (Model.NumResults / SearchMovieViewModel.PAGE_SIZE)+1) && i < 40; i++)
+{
+    <span>
+    @if (i != Model.Page)
+    {
+        @Html.ActionLink(
+            (i + 1).ToStringInvariant(),
+            "Index",
+            "Movie",
+            new
+            {
+                Title = Model.SearchParams.Title,
+                FirstName = Model.SearchParams.FirstName,
+                Genre = Model.SearchParams.Genre,
+                Keyword = Model.SearchParams.Keyword,
+                FromYear = Model.SearchParams.FromYear,
+                ToYear = Model.SearchParams.ToYear,
+                OrderBy = Model.SearchParams.OrderBy,
+                Ordering = Model.SearchParams.Ordering,
+                page = i + 1
+            },
+            null)
+    }
+    else
+    {
+        <b>@(i+1)</b>
+    }
+        | </span>
+    
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
